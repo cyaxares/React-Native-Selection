@@ -135,14 +135,22 @@ class Selection extends Component {
                                     if(!_.isEmpty(data.icon)){
                                         icon = this.checkIcon(data.icon)
                                     }
-	    							return(
-	    								<TouchableOpacity key={k} onPress={()=> this.onSelected(data.name, data.value)}>
-			    							<View style={styles.option}>
-                                                {icon}
-			    								<Text>{data.name}</Text>
-			    							</View>
-		    							</TouchableOpacity>
-			    					)
+	    						if(data.disable)
+return(
+<View style={styles.disable ? styles.disable : styles.option}>
+{icon}
+<Text>{data.name}</Text>
+</View>
+)
+else
+return(
+<TouchableOpacity key={k} onPress={()=> this.onSelected(data.name, data.value)}>
+<View style={styles.option}>
+ {icon}
+<Text>{data.name}</Text>
+</View>
+</TouchableOpacity>
+)
 	    						})}
     						</ScrollView>
     					</View>
